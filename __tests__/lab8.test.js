@@ -23,7 +23,6 @@ describe('Basic user flow for Website', () => {
     let data, plainValue;
     // Query select all of the <product-item> elements
     const prodItems = await page.$$('product-item');
-    console.log(`Checking product item 1/${prodItems.length}`);
     // Grab the .data property of <product-items> to grab all of the json data stored inside
     data = await prodItems[0].getProperty('data');
     // Convert that property to JSON
@@ -35,7 +34,6 @@ describe('Basic user flow for Website', () => {
 
     for (let i = 1; i < prodItems.length; i++){
       data = await prodItems[i].getProperty('data');
-      console.log(`Checking product item ${i + 1}/${prodItems.length}`);
       plainValue = await data.jsonValue();
       if (plainValue.title.length == 0) { allArePopulated = false; }
       if (plainValue.price.length == 0) { allArePopulated = false; }
